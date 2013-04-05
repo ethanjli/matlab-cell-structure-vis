@@ -33,6 +33,6 @@ zlabel('z');
 xlim([0, 1]);
 ylim([0, 1]);
 zlim([0, 1]);
-%saveas(skeleton, 'gplot_test_skeleton', 'fig');
+saveas(skeleton, 'gplot_test_skeleton', 'fig');
 
 hold off;

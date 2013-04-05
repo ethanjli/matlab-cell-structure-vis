@@ -1,0 +1,13 @@
+# MATLAB
+*.asv
+
+# Unit test / coverage reports
+.coverage
+.tox
+
+#Translations
+*.mo
+
+
+# Mac crap
+.DS_Store

@@ -59,12 +59,6 @@ is_glycan = springs(:,SPRING_COLS.TYPE) == SPRING_TYPES.GLYCAN;
 is_peptide = springs(:,SPRING_COLS.TYPE) == SPRING_TYPES.PEPTIDE;
 glycans = springs(is_glycan,:);
 peptides = springs(is_peptide,:);
-% Split vertices into vertices attached to springs and vertices not
-% attached to springs
-connected_vertices_indices = unique(springs(:,[SPRING_COLS.VERTEX1, SPRING_COLS.VERTEX2]));
-is_connected_vertex = ismember(vertices(:,VERTEX_COLS.ID), connected_vertices_indices);
-connected_vertices = vertices(is_connected_vertex,:);
-floating_vertices = vertices(~is_connected_vertex,:);
 % Generate lists of line segments for plotting
 glycans_gaps = NaN(size(glycans, 1), 1);
 peptides_gaps = NaN(size(peptides, 1), 1);
@@ -81,10 +75,8 @@ peptides_gapped = [peptides_x(:), peptides_y(:), peptides_z(:)];
 display = figure;
 hold on;
 % Draw vertices
-scatter3(connected_vertices(:,VERTEX_COLS.X), connected_vertices(:,VERTEX_COLS.Y), connected_vertices(:,VERTEX_COLS.Z),...
+scatter3(vertices(:,VERTEX_COLS.X), vertices(:,VERTEX_COLS.Y), vertices(:,VERTEX_COLS.Z),...
     '.k');
-scatter3(floating_vertices(:,VERTEX_COLS.X), floating_vertices(:,VERTEX_COLS.Y), floating_vertices(:,VERTEX_COLS.Z),...
-    '.r');
 % Draw springs
 plot3(glycans_gapped(:,1), glycans_gapped(:,2), glycans_gapped(:,3), 'green');
 plot3(peptides_gapped(:,1), peptides_gapped(:,2), peptides_gapped(:,3), 'blue');
